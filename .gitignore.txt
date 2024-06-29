@@ -1,0 +1,14 @@
+ *.pyc
+*.pyd
+*.sqlite3*
+*.map
+
+.vscode
+
+**__pycache__
+
+/media
+/venv
+
+**migrations
+*.db
