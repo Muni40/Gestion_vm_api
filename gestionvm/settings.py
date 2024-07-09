@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "corsheaders",
     'rest_framework',
+    "rest_framework.authtoken",
     "api",
 ]
 
@@ -49,7 +51,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     "corsheaders.middleware.CorsMiddleware",
 ]
+
+# LOGIN_REDIRECT_URL = '/'
 
 ROOT_URLCONF = 'gestionvm.urls'
 
@@ -66,9 +71,17 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
 
-    "DEFAULT_FILTER_BACKENDS":[
-        "django_filters.rest_framework.DjangoFilterBackend",
-    ]
+    # "DEFAULT_FILTER_BACKENDS":[
+    #     "django_filters.rest_framework.DjangoFilterBackend",
+    #     # 'rest_framework.filters.SearchFilter',
+    # ]
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "SIGNING_KEY": SECRET_KEY,
+    "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
 TEMPLATES = [
